@@ -46,7 +46,6 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
 
    
   const handleSetIndex = (index:number) => {
-    console.log('i called',index)
     setShowDiscountForm((prev) => ({
       ...prev,
       [index]: true, 
@@ -88,7 +87,6 @@ export const ProductProvider = ({ children }: { children: ReactNode }) => {
     });
   }, []);
 
-console.log(showDiscountForm, 'mai hu main')
   const value = useMemo(
     () => ({
       products,

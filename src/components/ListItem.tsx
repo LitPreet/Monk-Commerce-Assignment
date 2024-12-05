@@ -27,11 +27,11 @@ const VariantItem = ({
       {...attributes}
       {...listeners}
       style={style}
-      className="flex items-center bg-white p-3 rounded-3xl mb-1 w-[80%]"
+      className="flex items-center ml-7 bg-white p-2 sm:p-3 rounded-3xl mb-1  w-[80%] sm:w-[90%]"
     >
       <img src={DragIcon} alt="drag icon" className="w-4 h-4 mr-2" />
-      <p className="text-xs font-medium">{variant.title}</p>
-      <p className="ml-auto text-xs text-gray-600">${variant.price}</p>
+      <p className="text-[9px] sm:text-xs font-medium">{variant.title}</p>
+      <p className="ml-auto text-[9px] sm:text-xs text-gray-600">${variant.price}</p>
     </div>
   );
 };
@@ -195,9 +195,10 @@ const handleDiscountChange = (value: string, type: "amount" | "type") => {
             />
             <span className="ml-2 text-sm font-medium">{index + 1}</span>
           </div>
-          <div className="flex justify-between bg-white p-3 rounded-md items-center w-full">
+          <div className="flex justify-between bg-white p-2 sm:p-3 rounded-md items-center w-full">
             <div className="flex items-center gap-4">
-              <p className="text-sm font-medium">{product.title}</p>
+              <p className="sm:text-sm text-[12px] sm:hidden font-medium">{product.title.slice(0,14)+'...'}</p>
+              <p className="sm:text-sm text-[12px] hidden sm:block font-medium">{product.title}</p>
             </div>
             <div className="flex items-center justify-center">
               <button onClick={handleEditClick}>
@@ -212,7 +213,7 @@ const handleDiscountChange = (value: string, type: "amount" | "type") => {
           onClick={(e) => e.stopPropagation()}
         >
           {showDiscountForm[index] ? (
-            <div className="flex gap-2 w-full sm:w-1/2">
+            <div className="flex gap-2 w-[150px] sm:w-1/2">
               <input
                 type="text"
                 value={discount.amount}
@@ -221,10 +222,10 @@ const handleDiscountChange = (value: string, type: "amount" | "type") => {
                   if (isNaN(+value)) return;
                   handleDiscountChange(value, "amount");
                 }}
-                className="outline-none p-2 w-1/2 text-center rounded"
+                className="outline-none px-2 sm:py-4 py-3 w-1/2 text-[9px] sm:text-md text-center rounded"
               />
               <select
-                className="w-1/2 text-sm rounded outline-none"
+                className="w-1/2 rounded text-[9px] sm:text-sm outline-none"
                 value={discount.type}
                 onChange={(e) => handleDiscountChange(e.target.value, "type")}
               >
@@ -234,7 +235,7 @@ const handleDiscountChange = (value: string, type: "amount" | "type") => {
             </div>
           ) : (
             <button
-              className="px-2 sm:px-4 py-2 sm:py-2 text-sm bg-[#008060] text-white rounded"
+              className="px-2  sm:px-4  sm:py-2 text-[9px] py-3 sm:text-sm bg-[#008060] text-white rounded"
               onClick={() => {
                 handleSetIndex(index);
               }}
@@ -290,7 +291,7 @@ const handleDiscountChange = (value: string, type: "amount" | "type") => {
                 >
                   <VariantItem variant={variant} />
                   {showDiscountForm[index] && (
-                    <div className="flex gap-2 w-full sm:w-1/2">
+                    <div className="flex gap-2 w-[180px]  justify-end sm:w-1/2">
                       <input
                         type="text"
                         value={
@@ -305,7 +306,7 @@ const handleDiscountChange = (value: string, type: "amount" | "type") => {
                             "amount"
                           );
                         }}
-                        className="outline-none p-2 w-1/2 text-center rounded"
+                       className="outline-none p-2 w-1/2 text-center rounded text-[9px] sm:text-base"
                         placeholder="Amount"
                       />
                       <select
@@ -319,7 +320,7 @@ const handleDiscountChange = (value: string, type: "amount" | "type") => {
                             "type"
                           )
                         }
-                        className="w-1/2 text-sm rounded outline-none"
+                         className="w-1/2 sm:text-sm rounded outline-none text-[9px]"
                       >
                         <option value="% off">% off</option>
                         <option value="flat off">flat off</option>
@@ -328,7 +329,7 @@ const handleDiscountChange = (value: string, type: "amount" | "type") => {
                   )}
 
                   <button
-                    className="ml-4 px-2 py-1 text-xs text-gray-500 rounded"
+                     className=" ml-0 sm:ml-4 px-1 py-1 text-xs  text-gray-500 rounded"
                     onClick={() => handleRemoveVariant(product.id, variant.id)}
                   >
                     <X />
@@ -339,11 +340,11 @@ const handleDiscountChange = (value: string, type: "amount" | "type") => {
           </div>
         )
       ) : product.variants && product.variants.length === 1 ? (
-        <div className="pl-0 sm:pl-8 mt-2 w-[90%] sm:w-[80%] flex items-end flex-col">
-          <div className="flex gap-2 items-center w-[80%]">
+        <div className="pl-10 sm:pl-8  mt-2 w-[100%] sm:w-[80%] flex items-end flex-col">
+          <div className="flex  gap-2 items-center w-[100%] sm:w-[80%]">
             <VariantItem variant={product.variants[0]} />
             {showDiscountForm[index] && (
-              <div className="flex gap-2 w-full sm:w-1/2">
+              <div className="flex gap-2 w-[180px]  justify-end sm:w-1/2">
                 <input
                   type="text"
                   value={variantDiscounts[product.variants[0].id]?.amount || ""}
@@ -356,8 +357,8 @@ const handleDiscountChange = (value: string, type: "amount" | "type") => {
                       "amount"
                     );
                   }}
-                  className="outline-none p-2 w-1/2 text-center rounded"
-                  placeholder="Amount"
+                  className="outline-none p-2 w-1/2 text-center rounded text-[9px] sm:text-base"
+                  placeholder=""
                 />
                 <select
                   value={
@@ -371,7 +372,7 @@ const handleDiscountChange = (value: string, type: "amount" | "type") => {
                       "type"
                     )
                   }
-                  className="w-1/2 text-sm rounded outline-none"
+                  className="w-1/2 sm:text-sm rounded outline-none text-[9px]"
                 >
                   <option value="% off">% off</option>
                   <option value="flat off">flat off</option>
@@ -379,7 +380,7 @@ const handleDiscountChange = (value: string, type: "amount" | "type") => {
               </div>
             )}
             <button
-              className="ml-4 px-2 py-1 text-xs text-gray-500 rounded"
+              className=" ml-0 sm:ml-4 px-1 py-1 text-xs  text-gray-500 rounded"
               onClick={() =>
                 handleRemoveVariant(product.id, product.variants[0].id)
               }
