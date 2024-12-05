@@ -79,7 +79,12 @@ function App() {
   };
   
   const sensors = useSensors(
-    useSensor(TouchSensor),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 250,  
+        tolerance: 5  
+      }
+    }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
