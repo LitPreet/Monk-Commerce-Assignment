@@ -34,7 +34,7 @@ const ProductDialogBox: React.FC = () => {
     []
   );
  
-  const { data, isLoading, isError, isFetching } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["products", searchQuery, page], 
     queryFn: () => fetchProducts(searchQuery, page),
     staleTime: 0, 
