@@ -154,7 +154,7 @@ const ProductDialogBox: React.FC = () => {
               <div className="flex items-center min-h-[45px] px-6 gap-4 py-1 w-[95%]">
                 <input
                   type="checkbox"
-                  className="w-6 h-6 ml-4"
+                  className="w-6 h-6 ml-4 accent-[#008060] "
                   checked={selectedProducts.some((p) => p.id === product.id)}
                   onChange={() => handleProductToggle(product.id, product)}
                 />
@@ -183,7 +183,7 @@ const ProductDialogBox: React.FC = () => {
                 >
                   <input
                     type="checkbox"
-                    className="w-6 h-6 ml-10"
+                    className="w-6 h-6 ml-10 accent-[#008060]"
                     checked={selectedProducts.some(
                       (p) =>
                         p.id === product.id &&
